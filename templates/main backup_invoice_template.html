@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            font-size: 12px;
+            color: #000;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .divider {
+            border-top: 2px solid #000;
+            margin: 10px 0 20px;
+        }
+
+        /* Top 3-column section */
+        .top-section {
+            width: 100%;
+            display: table;
+            margin-bottom: 20px;
+        }
+        .top-col {
+            display: table-cell;
+            width: 33%;
+            vertical-align: top;
+        }
+
+        .logo-box img {
+            max-height: 90px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        /* Details 2-column box */
+        .details-box {
+            width: 100%;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .details-box td {
+            border: 1px solid #000;
+            padding: 6px;
+        }
+        .details-left {
+            width: 40%;
+        }
+        .details-right {
+            width: 60%;
+        }
+        .details-label {
+            font-weight: bold;
+            background: #f2f2f2;
+            width: 40%;
+        }
+
+        /* Items table */
+        table.items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        table.items th, table.items td {
+            border: 1px solid #000;
+            padding: 6px;
+        }
+        table.items th {
+            background: #f2f2f2;
+            font-weight: bold;
+        }
+        table.items td:last-child,
+        table.items th:last-child {
+            text-align: right;
+        }
+
+        /* Totals box */
+        .totals {
+            width: 250px;
+            margin-left: auto;
+            border-collapse: collapse;
+        }
+        .totals td {
+            border: 1px solid #000;
+            padding: 6px;
+        }
+        .totals td:first-child {
+            font-weight: bold;
+        }
+        .totals td:last-child {
+            text-align: right;
+        }
+
+        /* Signature */
+        .signature-block {
+            margin-top: 40px;
+            text-align: right;
+        }
+        .signature-block img {
+            max-height: 80px;
+            margin-bottom: 5px;
+        }
+        .signature-name {
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 10px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>PURCHASE ORDER</h1>
+    <div class="divider"></div>
+
+    <!-- Top 3-column layout -->
+    <div class="top-section">
+
+        <!-- Logo -->
+        <div class="top-col logo-box">
+            {% if LOGO_IMAGE %}
+            <img src="{{LOGO_IMAGE}}">
+            {% endif %}
+        </div>
+
+        <!-- Bill To -->
+        <div class="top-col">
+            <div class="section-title">Bill To:</div>
+            <div><strong>{{COMPANY_NAME}}</strong></div>
+            <div>{{COMPANY_ADDRESS}}</div>
+            <div>Phone: {{COMPANY_PHONE}}</div>
+        </div>
+
+        <!-- Ship To -->
+        <div class="top-col">
+            <div class="section-title">Ship To:</div>
+            <div><strong>{{VENDOR_NAME}}</strong></div>
+            <div>{{VENDOR_ADDRESS}}</div>
+        </div>
+
+    </div>
+
+    <!-- Details box -->
+    <table class="details-box">
+        <tr>
+            <td class="details-label">P.O. No:</td>
+            <td class="details-left">{{INVOICE_NUMBER}}</td>
+            <td class="details-label">Vendor:</td>
+            <td class="details-right">{{VENDOR_NAME}}</td>
+        </tr>
+        <tr>
+            <td class="details-label">Date:</td>
+            <td>{{DATE}}</td>
+            <td class="details-label">Shipping Method:</td>
+            <td>{{SHIPPING_METHOD}}</td>
+        </tr>
+        <tr>
+            <td class="details-label">Delivery Date:</td>
+            <td>{{DELIVERY_DATE}}</td>
+            <td class="details-label">Shipping Terms:</td>
+            <td>{{SHIPPING_TERMS}}</td>
+        </tr>
+        <tr>
+            <td class="details-label">HST/GST Registration No.:</td>
+            <td colspan="3">{{HST_GST_NUMBER}}</td>
+        </tr>
+    </table>
+
+    <!-- Items table -->
+    <table class="items">
+        <thead>
+            <tr>
+                <th>Lot Number</th>
+                <th>Item Description</th>
+                <th>Quantity</th>
+                <th>Units</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in ITEMS %}
+            <tr>
+                <td>{{item.lot_number}}</td>
+                <td>{{item.item}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.units}}</td>
+                <td>${{ "%.2f"|format(item.unit_price) }}</td>
+                <td>${{ "%.2f"|format(item.total) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Totals -->
+    <table class="totals">
+        <tr>
+            <td>SUBTOTAL</td>
+            <td>${{SUBTOTAL}}</td>
+        </tr>
+        <tr>
+            <td>TAX ({{TAX_RATE}})</td>
+            <td>${{TAX}}</td>
+        </tr>
+        <tr>
+            <td>SHIPPING</td>
+            <td>${{SHIPPING}}</td>
+        </tr>
+        <tr>
+            <td>GRAND TOTAL</td>
+            <td>${{GRAND_TOTAL}}</td>
+        </tr>
+    </table>
+
+    <!-- Signature -->
+    {% if SIGNATURE_NAME %}
+    <div class="signature-block">
+        {% if SIGNATURE_IMAGE %}
+        <img src="{{SIGNATURE_IMAGE}}">
+        {% endif %}
+        <div class="signature-name">{{SIGNATURE_NAME}}</div>
+        <div>{{SIGNATURE_POSITION}}</div>
+        <div style="margin-top:10px;">SIGNATURE / APPROVED BY</div>
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <div class="footer">
+        Created by: {{CREATED_BY}} | Generated on: {{DATE}}
+    </div>
+
+</body>
+</html>

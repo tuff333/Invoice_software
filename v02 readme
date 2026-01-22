@@ -1,0 +1,111 @@
+📘 Invoice Platform — Version v02 Upgrade README
+🚀 Overview
+Version v02 introduces major improvements to usability, validation, vendor management, dashboard functionality, and PDF generation.
+This release focuses on making the system more polished, reliable, and production‑ready.
+
+🆕 New Features in v02
+1. Vendor Management Enhancements
+✔ Edit Vendor Details
+Vendors added through the dropdown can now be edited.
+Includes:
+Name
+Address
+Phone
+Additional fields (if added later)
+✔ Delete Vendor
+Vendors can be removed if:
+They are not used in any invoice
+OR
+You choose to allow cascade deletion (optional)
+2. Form Validation Improvements
+✔ Required Fields
+The system now validates:
+Vendor
+PO Date
+At least one item
+Quantity > 0
+Unit price ≥ 0
+Company settings exist
+✔ Optional Fields
+Delivery date is optional
+Comments optional
+Terms optional
+✔ Real‑Time Warnings
+Red borders
+Tooltip messages
+“Missing required fields” banner
+3. Dashboard Enhancements
+✔ Quick Preview
+A modal preview of the invoice PDF without downloading.
+✔ Delete Single Invoice
+Trash icon next to each invoice row.
+✔ Multi‑Select Delete
+Checkboxes allow selecting multiple invoices and deleting them at once.
+✔ Multi‑Select Download
+Select multiple invoices → backend generates a ZIP → user downloads.
+4. PDF Template Improvements
+✔ Version A (Exact Match)
+Your HTML design converted into xhtml2pdf‑compatible layout.
+✔ Version B (Stable Version)
+A more robust version optimized for consistent PDF rendering.
+✔ Fixed Logo Size
+Display size: 180px width
+Recommended upload size: 1234px × 123px
+Ensures sharp, clean rendering in PDF.
+✔ Improved Data Binding
+All fields now use backend variables consistently:
+Company info
+Vendor info
+Items
+Totals
+Signature
+Comments
+Terms
+5. Backend Enhancements
+✔ Vendor Update Route
+Allows editing vendor details.
+✔ Vendor Delete Route
+Allows safe removal of vendors.
+✔ Bulk Delete Invoices
+Supports multi‑select deletion from dashboard.
+✔ Bulk Download Invoices
+Generates ZIP of selected invoices.
+✔ PDF Preview Endpoint
+Streams PDF for quick preview modal.
+
+🧩 v02 Architecture Changes
+Frontend
+New modals for vendor editing
+New validation logic
+New dashboard actions (preview, delete, multi‑delete, multi‑download)
+Updated invoice creation UI
+Backend
+New vendor update/delete endpoints
+New invoice bulk delete/download endpoints
+Updated PDF generation to support Version A & B templates
+Improved static file handling for logo
+Database
+Vendor table supports updates
+Invoice table supports bulk operations
+
+🧪 Testing Checklist for v02
+Vendor
+Add vendor
+Edit vendor
+Delete vendor
+Vendor dropdown updates instantly
+Invoice Creation
+Required field validation
+Optional fields behave correctly
+Items calculate totals correctly
+PDF preview works
+PDF download works
+Dashboard
+Single delete
+Multi‑delete
+Multi‑download
+Quick preview modal
+PDF
+Logo displays correctly
+Totals correct
+Signature displays

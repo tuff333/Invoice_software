@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Dashboard - Medicine Wheel Ranch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📊 Invoice Dashboard</h1>
+        <div>
+            <button onclick="window.location.href='invoice.html'" class="btn-primary">+ Create New Invoice</button>
+            <button onclick="exportToExcel()" class="btn-success">📊 Export to Excel</button>
+            <button onclick="window.location.href='settings.html'" class="btn-secondary">⚙ Settings</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Invoices</h3>
+                <p id="totalCount">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>This Month</h3>
+                <p id="monthCount">0</p>
+            </div>
+        </div>
+
+        <h2>📋 Invoice Registry</h2>
+        <input type="text" id="search" placeholder="Search invoices..." style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Vendor</th>
+                    <th>Status</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceTable">
+                <!-- Populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Load invoices on page load
+        document.addEventListener('DOMContentLoaded', loadInvoices);
+    </script>
+
+    <!-- Copyright Footer -->
+    <div class="copyright-footer">
+        <p>&copy; 2026 Rasesh Pradhan | <a href="https://www.facebook.com/rasesh.pradhan3/" target="_blank">Visit my Facebook</a></p>
+    </div>
+</body>
+</html>

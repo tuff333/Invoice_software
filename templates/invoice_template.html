@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="invoice">
+
+    <div class="title">PURCHASE ORDER</div>
+
+    <div class="company-address">
+        {{COMPANY_NAME}} - {{COMPANY_ADDRESS}} - Phone: {{COMPANY_PHONE}}
+    </div>
+
+    <!-- BLUE HEADER BAR -->
+    <table class="info-bar">
+        <tr>
+
+            <!-- LOGO -->
+            <td class="logo-cell">
+                {% if LOGO_IMAGE %}
+                    <img src="{{LOGO_IMAGE}}" class="logo-img">
+                {% endif %}
+            </td>
+
+            <!-- BILL TO -->
+            <td class="billto-cell">
+                <div class="info-title">BILL TO</div>
+                {{COMPANY_NAME}}<br>
+                {{COMPANY_ADDRESS}}<br>
+                Phone: {{COMPANY_PHONE}}
+            </td>
+
+            <!-- SHIP TO -->
+            <td class="shipto-cell">
+                <div class="info-title">SHIP TO</div>
+                {{customer_name}}<br>
+                {{customer_address}}<br>
+                {{customer_city}}<br>
+                {{customer_phone}}<br>
+                {{customer_email}}
+            </td>
+
+        </tr>
+    </table>
+
+    <!-- META INFO -->
+    <table class="meta-table">
+        <tr>
+
+            <!-- VENDOR / SHIPPING INFO -->
+            <td class="vendor-block">
+                <strong>{{vendor_name}}</strong><br>
+                {{vendor_address}}<br>
+                {{vendor_city}}<br>
+                {{vendor_phone}}<br>
+                {{vendor_email}}<br><br>
+
+                <strong>Shipping Method:</strong> {{shipping_method}}<br>
+                <strong>Shipping Terms:</strong> {{shipping_terms}}<br>
+                <strong>Delivery Date:</strong> {{delivery_date}}
+            </td>
+
+            <!-- PO + DATE -->
+            <td class="po-block">
+                <strong>P.O. No:</strong> {{INVOICE_NUMBER}}<br>
+                <strong>Date:</strong> {{DATE}}
+            </td>
+
+        </tr>
+    </table>
+
+    <!-- ITEMS TABLE -->
+    <table class="items">
+        <tr>
+            <th>Lot Number</th>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Units</th>
+            <th>Unit Price</th>
+            <th>Total Price</th>
+        </tr>
+
+        {% for item in ITEMS %}
+        <tr>
+            <td>{{item.lot_number}}</td>
+            <td>{{item.item}}</td>
+            <td class="right">{{item.quantity}}</td>
+            <td>{{item.units}}</td>
+            <td class="right">${{ "%.2f"|format(item.unit_price) }}</td>
+            <td class="right total-col">${{ "%.2f"|format(item.total) }}</td>
+        </tr>
+        {% endfor %}
+
+        <tr><td colspan="6" class="items-space"></td></tr>
+    </table>
+
+    <p><strong>HST/GST Registration No.:</strong> {{HST_GST_NUMBER}}</p>
+
+    <!-- BOTTOM SECTION -->
+    <table class="bottom-section">
+        <tr>
+
+            <!-- COMMENTS -->
+            <td class="comments-block">
+                <p><strong>Comments:</strong><br>{{COMMENTS}}</p>
+                <p><strong>Terms & Conditions:</strong><br>{{TERMS_CONDITIONS}}</p>
+            </td>
+
+            <!-- TOTALS -->
+            <td class="totals-block">
+                <table class="tax-box">
+                    <tr><td>TAX RATE</td><td class="right">{{TAX_RATE}}</td></tr>
+                    <tr><td>TAX</td><td class="right">${{TAX}}</td></tr>
+                    <tr><td>SHIPPING</td><td class="right">${{SHIPPING}}</td></tr>
+                    <tr class="grand"><td>GRAND TOTAL</td><td class="right">${{GRAND_TOTAL}}</td></tr>
+                </table>
+
+                <!-- SIGNATURE (RIGHT ALIGNED) -->
+                <div class="signature-block">
+                    <strong>Approved By:</strong><br>
+                    {% if SIGNATURE_IMAGE %}
+                        <img src="{{SIGNATURE_IMAGE}}" class="signature-img"><br>
+                    {% endif %}
+                    {{SIGNATURE_NAME}}<br>
+                    {{SIGNATURE_POSITION}}
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+.invoice {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000;
+    background: white;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-bottom: 4px solid #0a1f24;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+}
+
+.company-address {
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* HEADER BAR */
+.info-bar td {
+    background: #355c9c;
+    color: #fff;
+    vertical-align: top;
+    padding: 6px 12px;
+}
+
+.logo-img {
+    width: 180px;
+    height: auto;
+    background: #fff;
+    padding: 6px;
+}
+
+.info-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* META TABLE */
+.meta-table td {
+    padding: 6px 4px;
+    font-size: 13px;
+}
+
+.po-block {
+    text-align: right;
+}
+
+/* ITEMS TABLE */
+.items {
+    page-break-inside: auto;
+}
+
+.items thead {
+    display: table-header-group;
+}
+
+.items tfoot {
+    display: table-footer-group;
+}
+
+.items tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+.items th {
+    background: #2c4f89;
+    color: #fff;
+    padding: 6px;
+    border: 1px solid #000;
+    font-size: 13px;
+}
+
+.items td {
+    padding: 6px;
+    border: 1px solid #000;
+    font-size: 13px;
+}
+
+.right {
+    text-align: right;
+}
+
+.total-col {
+    background: #9eb6e2;
+    font-weight: bold;
+}
+
+/* TOTALS + SIGNATURE */
+.tax-box td {
+    border: 1px solid #000;
+    padding: 6px;
+    font-size: 13px;
+}
+
+.grand {
+    background: #0a1f24;
+    color: #fff;
+    font-weight: bold;
+}
+
+.signature-block {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.signature-img {
+    max-height: 80px;
+    margin-top: 5px;
+}
+
+/* BOTTOM SECTION */
+.bottom-section td {
+    vertical-align: top;
+}
+
+.comments-block {
+    width: 60%;
+}
+
+.totals-block {
+    width: 40%;
+}
+
+/* Preview actions */
+.preview-actions {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.preview-actions .btn-primary,
+.preview-actions .btn-secondary {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.preview-actions .btn-primary {
+    background: #3498db;
+    color: #fff;
+}
+
+.preview-actions .btn-secondary {
+    background: #95a5a6;
+    color: #fff;
+}
+
+/* Print mode */
+@media print {
+    body {
+        background: white !important;
+    }
+    .preview-actions {
+        display: none !important;
+    }
+    .invoice {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Invoice - Medicine Wheel Ranch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="invoice-header">
+        <div class="header-top">
+            <h1>Create New Invoice</h1>
+        </div>
+
+        <div class="header-actions">
+            <button onclick="window.location.href='index.html'" class="btn-secondary">← Back</button>
+
+            <select id="templateSelect" class="template-select">
+                <option value="classic">Classic Template</option>
+                <option value="visual">Visual Template</option>
+            </select>
+
+            <button class="btn-secondary" id="previewInvoiceBtn">Preview</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <form id="invoiceForm" novalidate>
+
+            <div class="form-grid">
+                <div>
+                    <label>Invoice Number:</label>
+                    <input type="text" id="invoice_number" readonly>
+                </div>
+
+                <div>
+                    <label>Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div>
+                    <label>Type:</label>
+                    <select id="type" required>
+                        <option value="Sample">Sample</option>
+                        <option value="Order">Order</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Select Vendor:</label>
+                    <select id="vendorSelect" required>
+                        <option value="">-- Select Vendor --</option>
+                    </select>
+                    <button type="button" onclick="showAddVendor()" class="btn-small">+ Add New Vendor</button>
+                </div>
+            </div>
+
+            <div id="vendorDetails" style="display:none; background:#f5f5f5; padding:15px; border-radius:4px; margin:15px 0;">
+                <h3>Vendor Details</h3>
+                <p id="vendorInfo"></p>
+            </div>
+
+            <!-- HST/GST -->
+            <div style="margin:20px 0;">
+                <label>HST/GST Registration No.:</label>
+                <div style="display:flex; gap:10px;">
+                    <select id="hstGstSelect" style="flex:1;">
+                        <option value="747957900 RT0001">747957900 RT0001</option>
+                    </select>
+                    <button type="button" onclick="addHstGstNumber()" class="btn-small">+ Add New</button>
+                    <button type="button" onclick="setDefaultHstGst()" class="btn-small">⭐ Set as Default</button>
+                </div>
+            </div>
+
+            <!-- Signature -->
+            <div style="margin:20px 0;">
+                <label>Signature (Optional):</label>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                    <select id="signatureSelect" style="flex:1;">
+                        <option value="">-- No Signature --</option>
+                    </select>
+                    <button type="button" onclick="uploadSignature()" class="btn-small">+ Upload New</button>
+                    <button type="button" onclick="setDefaultSignature()" class="btn-small">⭐ Set as Default</button>
+                </div>
+
+                <div id="signaturePreview" style="margin-top:10px; display:none;">
+                    <img id="signatureImage" onerror="this.style.display='none'" style="max-height:80px; border:1px solid #ddd;">
+                    <div id="signatureInfo" style="font-size:12px; margin-top:5px;"></div>
+                </div>
+            </div>
+
+            <!-- Shipping Fields -->
+            <div class="form-grid">
+                <div>
+                    <label>Shipping Method:</label>
+                    <input type="text" id="shipping_method">
+                </div>
+
+                <div>
+                    <label>Shipping Terms:</label>
+                    <input type="text" id="shipping_terms">
+                </div>
+
+                <div>
+                    <label>Delivery Date:</label>
+                    <input type="date" id="delivery_date">
+                </div>
+            </div>
+
+            <h3>Line Items</h3>
+            <table class="data-table" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Lot#</th>
+                        <th>Item Description</th>
+                        <th>Qty</th>
+                        <th>Units</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsBody"></tbody>
+            </table>
+            <button type="button" onclick="addItemRow()" class="btn-small">+ Add Item</button>
+
+            <div class="totals-section">
+                <div class="form-grid" style="max-width:400px; margin-left:auto;">
+                    <div>
+                        <label>Tax Rate (%):</label>
+                        <input type="number" id="tax_rate" value="13" step="0.1">
+                    </div>
+
+                    <div>
+                        <label>Shipping Cost:</label>
+                        <input type="number" id="shipping_cost" value="0" step="0.01">
+                    </div>
+
+                    <div style="background:#d4edda; padding:10px; border-radius:4px;">
+                        <label>Grand Total:</label>
+                        <input type="text" id="grand_total" readonly style="font-weight:bold; font-size:16px;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;">
+                <label>Comments/Notes:</label>
+                <textarea id="comments" rows="3" style="width:100%;"></textarea>
+            </div>
+
+            <div style="margin-top:20px;">
+                <label>Terms & Conditions:</label>
+                <textarea id="terms_conditions" rows="4" style="width:100%;"></textarea>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="btn-success" style="padding:12px 30px; font-size:16px;">
+                    ✓ Create Invoice & Generate PDF
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="invoice.js"></script>
+</body>
+</html>

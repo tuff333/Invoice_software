@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Settings - Medicine Wheel Ranch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Company Settings</h1>
+    <button onclick="window.location.href='index.html'" class="btn-secondary">← Back to Dashboard</button>
+    <button onclick="window.location.href='manage.html'" class="btn-primary">🛠 Manage Data</button>
+</header>
+
+<div class="container">
+
+    <h2>Company Information</h2>
+    <div class="form-grid">
+        <div>
+            <label>Company Name:</label>
+            <input type="text" id="company_name">
+        </div>
+
+        <div>
+            <label>Company Phone:</label>
+            <input type="text" id="company_phone">
+        </div>
+    </div>
+
+    <div style="margin-top:15px;">
+        <label>Company Address:</label>
+        <textarea id="company_address" rows="3" style="width:100%;"></textarea>
+    </div>
+
+    <h2 style="margin-top:30px;">Default Shipping Settings</h2>
+    <div class="form-grid">
+        <div>
+            <label>Default Shipping Method:</label>
+            <input type="text" id="default_shipping_method">
+        </div>
+
+        <div>
+            <label>Default Shipping Terms:</label>
+            <input type="text" id="default_shipping_terms">
+        </div>
+    </div>
+
+    <h2 style="margin-top:30px;">Company Logo</h2>
+    <div>
+        <input type="file" id="logoUpload" accept="image/*">
+        <button class="btn-small" onclick="uploadLogo()">Upload Logo</button>
+    </div>
+
+    <!-- Logo Preview -->
+    <div id="logoPreview" style="margin-top:15px; display:none;">
+        <h3>Current Logo:</h3>
+        <img id="logoImage" style="max-height:120px; border:1px solid #ddd;">
+    </div>
+
+    <div class="action-buttons" style="margin-top:40px;">
+        <button class="btn-success" onclick="saveSettings()" style="padding:12px 30px; font-size:16px;">
+            ✓ Save Settings
+        </button>
+    </div>
+
+</div>
+
+<script src="settings.js"></script>
+
+</body>
+</html>

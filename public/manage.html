@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Panel - Medicine Wheel Ranch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Management Panel</h1>
+    <button onclick="window.location.href='settings.html'" class="btn-secondary">← Back to Settings</button>
+</header>
+
+<div class="container">
+
+    <!-- ============================
+         VENDORS
+    ============================= -->
+    <h2>Vendors</h2>
+    <button class="btn-small" onclick="openAddVendor()">+ Add Vendor</button>
+
+    <table class="styled-table" style="margin-top:15px;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th style="width:150px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="vendorTable"></tbody>
+    </table>
+
+    <hr style="margin:40px 0;">
+
+
+    <!-- ============================
+         HST / GST NUMBERS
+    ============================= -->
+    <h2>HST / GST Numbers</h2>
+    <button class="btn-small" onclick="openAddHst()">+ Add HST/GST</button>
+
+    <table class="styled-table" style="margin-top:15px;">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th style="width:150px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="hstTable"></tbody>
+    </table>
+
+    <hr style="margin:40px 0;">
+
+
+    <!-- ============================
+         SIGNATURES
+    ============================= -->
+    <h2>Signatures</h2>
+    <button class="btn-small" onclick="openAddSignature()">+ Add Signature</button>
+
+    <table class="styled-table" style="margin-top:15px;">
+        <thead>
+            <tr>
+                <th>Preview</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th style="width:200px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="signatureTable"></tbody>
+    </table>
+
+</div>
+
+<script src="manage.js"></script>
+
+</body>
+</html>

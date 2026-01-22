@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendors - Medicine Wheel Ranch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Vendor Management</h1>
+    <button onclick="window.location.href='index.html'" class="btn-secondary">← Back to Dashboard</button>
+</header>
+
+<div class="container">
+
+    <h2>Add New Vendor</h2>
+    <div class="form-grid">
+        <div>
+            <label>Vendor Name:</label>
+            <input type="text" id="vendorName">
+        </div>
+
+        <div>
+            <label>Contact:</label>
+            <input type="text" id="vendorContact">
+        </div>
+    </div>
+
+    <div style="margin-top:15px;">
+        <label>Address:</label>
+        <textarea id="vendorAddress" rows="3" style="width:100%;"></textarea>
+    </div>
+
+    <button class="btn-success" onclick="addVendor()" style="margin-top:20px;">+ Add Vendor</button>
+
+    <hr style="margin:40px 0;">
+
+    <h2>Vendor List</h2>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th style="width:150px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="vendorTable"></tbody>
+    </table>
+
+</div>
+
+<!-- ============================
+     Edit Vendor Modal
+============================ -->
+<div id="editVendorModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h2>Edit Vendor</h2>
+
+        <input type="hidden" id="editVendorId">
+
+        <label>Name:</label>
+        <input type="text" id="editVendorName">
+
+        <label>Address:</label>
+        <textarea id="editVendorAddress" rows="3"></textarea>
+
+        <label>Contact:</label>
+        <input type="text" id="editVendorContact">
+
+        <div class="modal-actions">
+            <button class="btn-success" onclick="saveVendorChanges()">Save</button>
+            <button class="btn-secondary" onclick="document.getElementById('editVendorModal').style.display='none'">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script src="vendor.js"></script>
+
+</body>
+</html>
